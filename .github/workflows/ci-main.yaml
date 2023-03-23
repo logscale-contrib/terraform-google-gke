@@ -2,13 +2,13 @@ name: ci-main
 on:
   push:
     branches:
-      - "master"
+      - "main"
       - "releases/*"
       - "develop"
       - "next*"
   pull_request:
     branches:
-      - "master"
+      - "main"
       - "releases/*"
       - "develop"
       - "next*"
