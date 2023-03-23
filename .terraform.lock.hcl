@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/hashicorp/google" {
   version     = "4.58.0"
-  constraints = "~> 4.0"
+  constraints = ">= 3.53.0, ~> 4.0, >= 4.51.0, < 5.0.0"
   hashes = [
     "h1:i82VNU/ZAKbAG0vuYXQO1CBhcYv+PsRYOnGU2uTQaiQ=",
     "zh:0d5e5c1c18d6941db174d899b346f4529b636ec685c17870fdff87c431d3472d",
@@ -22,7 +22,8 @@ provider "registry.terraform.io/hashicorp/google" {
 }
 
 provider "registry.terraform.io/hashicorp/kubernetes" {
-  version = "2.18.1"
+  version     = "2.18.1"
+  constraints = "~> 2.10"
   hashes = [
     "h1:y4VED+vsulAqE7YbQC7x1XXrzvi/dEIjupttSyzSA/M=",
     "zh:09d69d244f5e688d9b1582112aa5d151c5336278e43d39c88ae920c26536b753",
