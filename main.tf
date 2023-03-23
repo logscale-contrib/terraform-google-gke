@@ -31,10 +31,10 @@ module "service_accounts" {
   version       = "~> 4.0"
   project_id    = var.project_id
   prefix        = "ls"
-  names         = [var.cluster_name_suffix]
+  names         = [var.cluster_name]
   project_roles = ["${var.project_id}=>roles/viewer"]
-  display_name  = var.cluster_name_suffix
-  description   = var.cluster_name_suffix
+  display_name  = var.cluster_name
+  description   = var.cluster_name
 }
 
 module "gke" {
@@ -42,7 +42,7 @@ module "gke" {
   version = "25.0.0"
 
   project_id                  = var.project_id
-  name                        = "${local.cluster_type}-cluster${var.cluster_name_suffix}"
+  name                        = var.cluster_name
   regional                    = true
   region                      = var.region
   network                     = var.network
