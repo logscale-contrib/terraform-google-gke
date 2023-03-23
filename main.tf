@@ -30,7 +30,7 @@ module "service_accounts" {
   source        = "terraform-google-modules/service-accounts/google"
   version       = "~> 4.0"
   project_id    = var.project_id
-  prefix        = var.cluster_name_suffix
+  prefix        = "ls"
   names         = [var.cluster_name_suffix]
   project_roles = ["${var.project_id}=>roles/viewer"]
   display_name  = var.cluster_name_suffix
@@ -50,7 +50,7 @@ module "gke" {
   ip_range_pods               = var.ip_range_pods
   ip_range_services           = var.ip_range_services
   create_service_account      = false
-  service_account             = module.service_accounts.service_account
+  service_account             = module.service_accounts.email
   enable_cost_allocation      = true
   enable_binary_authorization = var.enable_binary_authorization
   skip_provisioners           = var.skip_provisioners
