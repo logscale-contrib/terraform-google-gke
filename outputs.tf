@@ -16,16 +16,16 @@
 
 output "kubernetes_endpoint" {
   sensitive = true
-  value     = module.gke.endpoint
+  value     = module.gke_auth.host
 }
 
 output "client_token" {
   sensitive = true
-  value     = base64encode(data.google_client_config.default.access_token)
+  value     = module.gke_auth.token
 }
 
 output "ca_certificate" {
-  value     = module.gke.ca_certificate
+  value     = module.gke_auth.cluster_ca_certificate
   sensitive = true
 }
 

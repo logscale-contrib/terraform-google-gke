@@ -55,3 +55,14 @@ module "gke" {
   enable_binary_authorization = var.enable_binary_authorization
   skip_provisioners           = var.skip_provisioners
 }
+
+module "gke_auth" {
+  depends_on = [
+    module.gke
+  ]
+  source       = "terraform-google-modules/kubernetes-engine/google//modules/auth"
+  version      = "24.1.0"
+  project_id   = var.project_id
+  location     = var.region
+  cluster_name = var.cluster_name
+}
