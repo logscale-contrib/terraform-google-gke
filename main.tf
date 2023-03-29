@@ -54,6 +54,16 @@ module "gke" {
   enable_cost_allocation      = true
   enable_binary_authorization = var.enable_binary_authorization
   skip_provisioners           = var.skip_provisioners
+  cluster_autoscaling = {
+    "auto_repair" : true,
+    "auto_upgrade" : true,
+    "enabled" : true,
+    "gpu_resources" : [],
+    "max_cpu_cores" : 0,
+    "max_memory_gb" : 0,
+    "min_cpu_cores" : 0,
+    "min_memory_gb" : 0
+  }
 }
 
 module "gke_auth" {
