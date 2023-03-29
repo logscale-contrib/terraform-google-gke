@@ -59,10 +59,10 @@ module "gke" {
     "auto_upgrade" : true,
     "enabled" : true,
     "gpu_resources" : [],
-    "max_cpu_cores" : 0,
-    "max_memory_gb" : 0,
-    "min_cpu_cores" : 0,
-    "min_memory_gb" : 0
+    "max_cpu_cores" : 24,
+    "max_memory_gb" : 200,
+    "min_cpu_cores" : 12,
+    "min_memory_gb" : 12
   }
 }
 
