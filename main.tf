@@ -58,10 +58,11 @@ module "gke" {
   cluster_autoscaling = {
     "auto_repair" : true,
     "auto_upgrade" : true,
-    "enabled" : true,
+    "autoscaling_profile" : "BALANCED",
+    "enabled" : false,
     "gpu_resources" : [],
-    "max_cpu_cores" : 24,
-    "max_memory_gb" : 200,
+    "max_cpu_cores" : 48,
+    "max_memory_gb" : 400,
     "min_cpu_cores" : 12,
     "min_memory_gb" : 12
   }
@@ -76,16 +77,17 @@ module "gke" {
       auto_repair     = true
     },
     {
-      name         = "compute"
+      name = "compute"
       # machine_type = "a2-highgpu-1g"
-      min_count    = 0
-      max_count    = 5
+      min_count = 0
+      max_count = 5
       # local_ssd_count    = 0
       # disk_size_gb       = 30
       # disk_type          = "pd-standard"
       # accelerator_count  = 1
       # accelerator_type   = "nvidia-tesla-a100"
       # gpu_partition_size = "1g.5gb"
+      auto_upgrade    = true
       auto_repair     = true
       service_account = module.service_accounts.email
     }
@@ -112,9 +114,9 @@ module "gke" {
   # }
 
   node_pools_labels = {
-    # all = {
-    #   all-pools-example = true
-    # }
+    all = {
+      all-pools-example = true
+    }
     general = {
       workloadClass = "general"
     }
