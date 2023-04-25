@@ -71,7 +71,7 @@ module "gke" {
       name            = "general"
       min_count       = 0
       max_count       = 5
-      service_account = var.compute_engine_service_account
+      service_account = module.service_accounts.email
       auto_upgrade    = true
       auto_repair     = true
     },
