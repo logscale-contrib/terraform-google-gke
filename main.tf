@@ -26,32 +26,33 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(module.gke.ca_certificate)
 }
 
-module "service_accounts" {
-  source        = "terraform-google-modules/service-accounts/google"
-  version       = "~> 4.0"
-  project_id    = var.project_id
-  prefix        = var.cluster_name
-  names         = ["k8s"]
-  project_roles = ["${var.project_id}=>roles/viewer"]
-  display_name  = var.cluster_name
-  description   = var.cluster_name
-}
+# module "service_accounts" {
+#   source        = "terraform-google-modules/service-accounts/google"
+#   version       = "~> 4.0"
+#   project_id    = var.project_id
+#   prefix        = var.cluster_name
+#   names         = ["k8s"]
+#   project_roles = ["${var.project_id}=>roles/viewer"]
+#   display_name  = var.cluster_name
+#   description   = var.cluster_name
+# }
 
 module "gke" {
   source = "terraform-google-modules/kubernetes-engine/google"
+
   # version = "25.0.0"
   release_channel = "RAPID"
 
-  project_id                  = var.project_id
-  name                        = var.cluster_name
-  regional                    = true
-  region                      = var.region
-  network                     = var.network
-  subnetwork                  = var.subnetwork
-  ip_range_pods               = var.ip_range_pods
-  ip_range_services           = var.ip_range_services
-  create_service_account      = false
-  service_account             = module.service_accounts.email
+  project_id             = var.project_id
+  name                   = var.cluster_name
+  regional               = true
+  region                 = var.region
+  network                = var.network
+  subnetwork             = var.subnetwork
+  ip_range_pods          = var.ip_range_pods
+  ip_range_services      = var.ip_range_services
+  create_service_account = true
+  # service_account             = module.service_accounts.email
   enable_cost_allocation      = true
   enable_binary_authorization = var.enable_binary_authorization
   skip_provisioners           = var.skip_provisioners
@@ -69,12 +70,12 @@ module "gke" {
 
   node_pools = [
     {
-      name            = "general"
-      min_count       = 0
-      max_count       = 5
-      service_account = module.service_accounts.email
-      auto_upgrade    = true
-      auto_repair     = true
+      name      = "general"
+      min_count = 0
+      max_count = 5
+      # service_account = format("%s@%s.iam.gserviceaccount.com", local.cluster_sa_name, var.project_id)
+      auto_upgrade = true
+      auto_repair  = true
     },
     {
       name = "compute"
@@ -87,9 +88,9 @@ module "gke" {
       # accelerator_count  = 1
       # accelerator_type   = "nvidia-tesla-a100"
       # gpu_partition_size = "1g.5gb"
-      auto_upgrade    = true
-      auto_repair     = true
-      service_account = module.service_accounts.email
+      auto_upgrade = true
+      auto_repair  = true
+      # service_account = module.service_accounts.email
     }
     # {
     #   name               = "pool-03"

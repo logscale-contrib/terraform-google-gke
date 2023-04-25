@@ -31,5 +31,6 @@ output "ca_certificate" {
 
 output "service_account" {
   description = "The default service account used for running nodes."
-  value       = module.gke.service_account
+  # value       = module.gke.service_account
+  value = module.gke.service_account
 }
