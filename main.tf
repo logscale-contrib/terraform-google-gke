@@ -60,7 +60,7 @@ module "gke" {
     "auto_repair" : true,
     "auto_upgrade" : true,
     "autoscaling_profile" : "BALANCED",
-    "enabled" : false,
+    "enabled" : true,
     "gpu_resources" : [],
     "max_cpu_cores" : 48,
     "max_memory_gb" : 400,
