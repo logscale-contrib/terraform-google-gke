@@ -39,7 +39,8 @@ module "service_accounts" {
 
 module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google"
-  version = "25.0.0"
+  # version = "25.0.0"
+  release_channel = "RAPID"
 
   project_id                  = var.project_id
   name                        = var.cluster_name
