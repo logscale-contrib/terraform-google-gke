@@ -62,10 +62,10 @@ module "gke" {
     "autoscaling_profile" : "BALANCED",
     "enabled" : true,
     "gpu_resources" : [],
-    "max_cpu_cores" : 48,
+    "max_cpu_cores" : 64,
     "max_memory_gb" : 400,
-    "min_cpu_cores" : 12,
-    "min_memory_gb" : 12
+    "min_cpu_cores" : 2,
+    "min_memory_gb" : 2
   }
 
   node_pools = [
@@ -77,7 +77,7 @@ module "gke" {
       # service_account = format("%s@%s.iam.gserviceaccount.com", local.cluster_sa_name, var.project_id)
       auto_upgrade = true
       auto_repair  = true
-      autoscaling = true
+      autoscaling  = true
     },
     {
       name         = "compute"
@@ -92,7 +92,7 @@ module "gke" {
       # gpu_partition_size = "1g.5gb"
       auto_upgrade = true
       auto_repair  = true
-      autoscaling = true
+      autoscaling  = true
       # service_account = module.service_accounts.email
     }
     # {
