@@ -71,9 +71,9 @@ module "gke" {
   node_pools = [
     {
       name         = "general"
-      machine_type = "e2-medium"
+      machine_type = "e2-standard-4"
       min_count    = 0
-      max_count    = 10
+      max_count    = 15
       # service_account = format("%s@%s.iam.gserviceaccount.com", local.cluster_sa_name, var.project_id)
       auto_upgrade = true
       auto_repair  = true
@@ -83,7 +83,7 @@ module "gke" {
       name         = "compute"
       machine_type = "e2-standard-8"
       min_count    = 0
-      max_count    = 10
+      max_count    = 15
       # local_ssd_count    = 0
       # disk_size_gb       = 30
       # disk_type          = "pd-standard"
