@@ -81,7 +81,7 @@ module "gke" {
     },
     {
       name         = "compute"
-      machine_type = "e2-standard-8"
+      machine_type = "e2-highcpu-16"
       min_count    = 0
       max_count    = 15
       # local_ssd_count    = 0
