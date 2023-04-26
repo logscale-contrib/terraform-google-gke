@@ -83,7 +83,7 @@ module "gke" {
       name         = "compute"
       machine_type = "e2-standard-8"
       min_count    = 0
-      max_count    = 5
+      max_count    = 10
       # local_ssd_count    = 0
       # disk_size_gb       = 30
       # disk_type          = "pd-standard"
