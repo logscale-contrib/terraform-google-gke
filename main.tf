@@ -69,6 +69,7 @@ module "gke" {
   }
 
   node_pools = [
+    { "name" : "default-node-pool" },
     {
       name         = "general"
       machine_type = "e2-standard-4"
@@ -118,9 +119,8 @@ module "gke" {
   # }
 
   node_pools_labels = {
-    all = {
-      all-pools-example = true
-    }
+    "all"= {}
+    "default-node-pool"= {} }
     general = {
       workloadClass = "general"
     }
