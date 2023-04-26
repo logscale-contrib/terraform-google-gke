@@ -60,7 +60,7 @@ module "gke" {
     "auto_repair" : true,
     "auto_upgrade" : true,
     "autoscaling_profile" : "BALANCED",
-    "enabled" : true,
+    "enabled" : false,
     "gpu_resources" : [],
     "max_cpu_cores" : 64,
     "max_memory_gb" : 400,
@@ -69,11 +69,10 @@ module "gke" {
   }
 
   node_pools = [
-    { name = "default-node-pool" },
     {
       name         = "general"
       machine_type = "e2-standard-4"
-      min_count    = 0
+      min_count    = 3
       max_count    = 15
       # service_account = format("%s@%s.iam.gserviceaccount.com", local.cluster_sa_name, var.project_id)
       auto_upgrade = true
@@ -83,7 +82,7 @@ module "gke" {
     {
       name         = "compute"
       machine_type = "e2-highcpu-16"
-      min_count    = 0
+      min_count    = 3
       max_count    = 15
       # local_ssd_count    = 0
       # disk_size_gb       = 30
@@ -119,8 +118,7 @@ module "gke" {
   # }
 
   node_pools_labels = {
-    "all"               = {}
-    "default-node-pool" = {}
+    all               = {}
     general = {
       workloadClass = "general"
     }
