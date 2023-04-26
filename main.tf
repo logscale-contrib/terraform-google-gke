@@ -119,8 +119,8 @@ module "gke" {
   # }
 
   node_pools_labels = {
-    "all"= {}
-    "default-node-pool"= {} }
+    "all"               = {}
+    "default-node-pool" = {}
     general = {
       workloadClass = "general"
     }
