@@ -69,7 +69,7 @@ module "gke" {
   }
 
   node_pools = [
-    { "name" : "default-node-pool" },
+    { name = "default-node-pool" },
     {
       name         = "general"
       machine_type = "e2-standard-4"
