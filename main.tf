@@ -56,24 +56,24 @@ module "gke" {
   enable_cost_allocation      = true
   enable_binary_authorization = var.enable_binary_authorization
   skip_provisioners           = var.skip_provisioners
-  cluster_autoscaling = {
-    "auto_repair" : true,
-    "auto_upgrade" : true,
-    "autoscaling_profile" : "BALANCED",
-    "enabled" : false,
-    "gpu_resources" : [],
-    "max_cpu_cores" : 64,
-    "max_memory_gb" : 400,
-    "min_cpu_cores" : 2,
-    "min_memory_gb" : 2
-  }
+  # cluster_autoscaling = {
+  #   "auto_repair" : true,
+  #   "auto_upgrade" : true,
+  #   "autoscaling_profile" : "BALANCED",
+  #   "enabled" : false,
+  #   "gpu_resources" : [],
+  #   "max_cpu_cores" : 64,
+  #   "max_memory_gb" : 400,
+  #   "min_cpu_cores" : 2,
+  #   "min_memory_gb" : 2
+  # }
 
   node_pools = [
     {
       name         = "general"
       machine_type = "e2-standard-4"
       min_count    = 0
-      max_count    = 3
+      max_count    = 1
       # service_account = format("%s@%s.iam.gserviceaccount.com", local.cluster_sa_name, var.project_id)
       auto_upgrade = true
       auto_repair  = true
@@ -83,7 +83,7 @@ module "gke" {
       name         = "compute"
       machine_type = "e2-highcpu-16"
       min_count    = 0
-      max_count    = 3
+      max_count    = 2
       # local_ssd_count    = 0
       # disk_size_gb       = 30
       # disk_type          = "pd-standard"
