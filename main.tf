@@ -72,8 +72,8 @@ module "gke" {
     {
       name         = "general"
       machine_type = "e2-standard-4"
-      min_count    = 3
-      max_count    = 6
+      min_count    = 0
+      max_count    = 3
       # service_account = format("%s@%s.iam.gserviceaccount.com", local.cluster_sa_name, var.project_id)
       auto_upgrade = true
       auto_repair  = true
@@ -82,8 +82,8 @@ module "gke" {
     {
       name         = "compute"
       machine_type = "e2-highcpu-16"
-      min_count    = 3
-      max_count    = 6
+      min_count    = 0
+      max_count    = 3
       # local_ssd_count    = 0
       # disk_size_gb       = 30
       # disk_type          = "pd-standard"
