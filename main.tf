@@ -82,7 +82,7 @@ module "gke" {
     {
       name         = "compute"
       machine_type = "e2-highcpu-16"
-      min_count    = 0
+      min_count    = 1
       max_count    = 2
       # local_ssd_count    = 0
       # disk_size_gb       = 30
@@ -118,7 +118,7 @@ module "gke" {
   # }
 
   node_pools_labels = {
-    all               = {}
+    all = {}
     general = {
       workloadClass = "general"
     }
