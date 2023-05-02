@@ -56,6 +56,7 @@ module "gke" {
   enable_cost_allocation      = true
   enable_binary_authorization = var.enable_binary_authorization
   skip_provisioners           = var.skip_provisioners
+  node_metadata               = "GKE_METADATA"
   # cluster_autoscaling = {
   #   "auto_repair" : true,
   #   "auto_upgrade" : true,
